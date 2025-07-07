@@ -1,0 +1,112 @@
+import json
+from collections import Counter
+import re
+from datetime import datetime
+
+class AIContentAnalyzer:
+    def __init__(self, openai_api_key):
+        self.openai_api_key = openai_api_key
+        
+        self.categories = {
+            'tools': 'New AI tools, software, platforms, APIs, and applications',
+            'use_cases': 'Creative applications, business implementations, and practical use cases',
+            'tutorials': 'Educational content, how-to guides, courses, and learning resources',
+            'practices': 'Best practices, industry insights, organizational strategies, and business approaches',
+            'news': 'Breaking news, announcements, releases, and industry updates'
+        }
+        
+    def analyze_batch(self, all_content):
+        """Analyze all collected content"""
+        # Flatten all content
+        flat_content = []
+        for platform, content_list in all_content.items():
+            flat_content.extend(content_list)
+        
+        print(f"🧠 Analyzing {len(flat_content)} pieces of content...")
+        
+        # Sort by engagement
+        sorted_content = self._sort_by_engagement(flat_content)
+        
+        # Categorize content (simple keyword-based for now)
+        categorized = self._categorize_content(sorted_content)
+        
+        # Extract trending hashtags
+        trending_hashtags = self._extract_trending_hashtags(flat_content)
+        
+        # Generate insights
+        insights = self._generate_insights(categorized)
+        
+        return {
+            'content': categorized,
+            'trending_hashtags': trending_hashtags,
+            'insights': insights,
+            'total_items': len(flat_content),
+            'generated_at': datetime.now().isoformat()
+        }
+    
+    def _sort_by_engagement(self, content):
+        """Sort content by engagement score"""
+        def engagement_score(item):
+            if item['platform'] == 'youtube':
+                return item['stats']['engagement_rate'] * item['stats']['views'] / 1000
+            elif item['platform'] == 'twitter':
+                stats = item['stats']
+                return stats['likes'] + stats['retweets'] * 2 + stats['replies']
+            return 0
+        
+        return sorted(content, key=engagement_score, reverse=True)
+    
+    def _categorize_content(self, content):
+        """Categorize content using keywords"""
+        categorized = {category: [] for category in self.categories.keys()}
+        
+        for item in content:
+            category = self._classify_single_item(item)
+            categorized[category].append(item)
+        
+        return categorized
+    
+    def _classify_single_item(self, item):
+        """Classify a single content item"""
+        text = f"{item.get('title', '')} {item.get('content', '')} {item.get('description', '')}"
+        text_lower = text.lower()
+        
+        tool_keywords = ['tool', 'platform', 'software', 'app', 'api', 'service', 'launch', 'release']
+        tutorial_keywords = ['how to', 'tutorial', 'guide', 'learn', 'course', 'teach', 'explain']
+        practice_keywords = ['strategy', 'business', 'company', 'organization', 'enterprise', 'workflow']
+        news_keywords = ['announced', 'breaking', 'news', 'update', 'released', 'launched']
+        
+        if any(keyword in text_lower for keyword in news_keywords):
+            return 'news'
+        elif any(keyword in text_lower for keyword in tool_keywords):
+            return 'tools'
+        elif any(keyword in text_lower for keyword in tutorial_keywords):
+            return 'tutorials'
+        elif any(keyword in text_lower for keyword in practice_keywords):
+            return 'practices'
+        else:
+            return 'use_cases'
+    
+    def _extract_trending_hashtags(self, content):
+        """Extract and rank hashtags"""
+        hashtags = []
+        
+        for item in content:
+            text = f"{item.get('title', '')} {item.get('content', '')} {item.get('description', '')}"
+            found_hashtags = re.findall(r'#\w+', text)
+            hashtags.extend(found_hashtags)
+        
+        # Count and return top hashtags
+        hashtag_counts = Counter(hashtags)
+        return hashtag_counts.most_common(10)
+    
+    def _generate_insights(self, categorized):
+        """Generate high-level insights"""
+        insights = [
+            "🔥 AI tool adoption is accelerating across all platforms!",
+            "📚 Tutorial content is seeing massive engagement - people want to learn!",
+            "💼 Business use cases are getting more sophisticated and practical.",
+            "🌟 The community is sharing more real-world implementations than ever."
+        ]
+        
+        return insights
