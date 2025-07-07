@@ -1,0 +1,61 @@
+name: AI Trend Hunter
+
+on:
+  schedule:
+    # Run Tuesday and Friday at 9 AM UTC
+    - cron: '0 9 * * 2,5'
+  workflow_dispatch: # Manual trigger
+
+jobs:
+  hunt-trends:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+    
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.9'
+        
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install requests python-dotenv
+        
+    - name: Run AI Trend Hunter
+      env:
+        YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
+        TWITTER_BEARER_TOKEN: ${{ secrets.TWITTER_BEARER_TOKEN }}
+        OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+      run: python main.py
+      
+    - name: Deploy to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./reports
+        commit_message: "🚀 Auto-update AI Trend Report"
+        
+    - name: Create Release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: report-${{ github.run_number }}
+        release_name: "AI Trend Report #${{ github.run_number }}"
+        body: |
+          🚀 **Fresh AI Trends Discovered!**
+          
+          **Report URL:** https://${{ github.repository_owner }}.github.io/ai-trend-hunter/
+          
+          **This Week's Highlights:**
+          - Latest AI tools and platforms analyzed
+          - Viral content from YouTube and social platforms
+          - AI-powered content categorization and insights
+          - Trending hashtags and topics identified
+          
+          Generated automatically on ${{ github.event.head_commit.timestamp }}
+        draft: false
+        prerelease: false
