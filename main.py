@@ -1,113 +1,134 @@
- 
+import os
 import requests
 from datetime import datetime, timedelta
-import os
 
-class YouTubeCollector:
-    def __init__(self, api_key):
-        self.api_key = api_key
-        self.base_url = "https://www.googleapis.com/youtube/v3"
-        self.ai_keywords = [
-            "artificial intelligence", "machine learning", "ChatGPT", "GPT-4",
-            "AI tools", "OpenAI", "Claude", "Midjourney", "Stable Diffusion",
-            "AI tutorial", "prompt engineering", "AI automation", "LLM",
-            "generative AI", "AI coding", "AI art", "voice AI"
-        ]
-        
-    def collect_ai_content(self, days_back=7):
-        """Collect AI content from YouTube"""
-        if not self.api_key:
-            print("⚠️  YouTube API key not found")
-            return self._get_sample_content()
-            
-        content = []
-        published_after = (datetime.now() - timedelta(days=days_back)).isoformat() + 'Z'
-        
-        for keyword in self.ai_keywords[:5]:  # Limit to 5 keywords for speed
-            try:
-                search_params = {
-                    'part': 'snippet',
-                    'q': keyword,
-                    'type': 'video',
-                    'publishedAfter': published_after,
-                    'order': 'relevance',
-                    'maxResults': 10,
-                    'key': self.api_key
-                }
-                
-                response = requests.get(f"{self.base_url}/search", params=search_params)
-                data = response.json()
-                
-                if 'items' in data:
-                    for item in data['items']:
-                        video_id = item['id']['videoId']
-                        video_stats = self._get_video_stats(video_id)
-                        
-                        content_item = {
-                            'platform': 'youtube',
-                            'id': video_id,
-                            'title': item['snippet']['title'],
-                            'description': item['snippet']['description'][:300],
-                            'url': f"https://www.youtube.com/watch?v={video_id}",
-                            'thumbnail': item['snippet']['thumbnails'].get('medium', {}).get('url', ''),
-                            'creator': item['snippet']['channelTitle'],
-                            'published_at': item['snippet']['publishedAt'],
-                            'keyword': keyword,
-                            'stats': video_stats
-                        }
-                        content.append(content_item)
-                        
-            except Exception as e:
-                print(f"Error collecting YouTube content for '{keyword}': {e}")
-                continue
-                
-        return sorted(content, key=lambda x: x['stats']['engagement_rate'], reverse=True)[:20]
+# Simple YouTube collector function
+def collect_youtube_content():
+    api_key = os.getenv('YOUTUBE_API_KEY')
+    if not api_key:
+        print("⚠️ No YouTube API key found")
+        return []
     
-    def _get_video_stats(self, video_id):
-        """Get video statistics"""
+    print("📡 Collecting from YouTube...")
+    
+    base_url = "https://www.googleapis.com/youtube/v3"
+    keywords = ["artificial intelligence", "ChatGPT", "AI tools", "machine learning"]
+    content = []
+    
+    published_after = (datetime.now() - timedelta(days=7)).isoformat() + 'Z'
+    
+    for keyword in keywords[:2]:  # Just 2 keywords for speed
         try:
-            params = {
-                'part': 'statistics,contentDetails',
-                'id': video_id,
-                'key': self.api_key
+            search_params = {
+                'part': 'snippet',
+                'q': keyword,
+                'type': 'video',
+                'publishedAfter': published_after,
+                'order': 'relevance',
+                'maxResults': 10,
+                'key': api_key
             }
             
-            response = requests.get(f"{self.base_url}/videos", params=params)
+            response = requests.get(f"{base_url}/search", params=search_params)
             data = response.json()
             
-            if 'items' in data and len(data['items']) > 0:
-                stats = data['items'][0]['statistics']
-                
-                views = int(stats.get('viewCount', 0))
-                likes = int(stats.get('likeCount', 0))
-                comments = int(stats.get('commentCount', 0))
-                
-                engagement_rate = ((likes + comments) / max(views, 1)) * 100
-                
-                return {
-                    'views': views,
-                    'likes': likes,
-                    'comments': comments,
-                    'engagement_rate': engagement_rate
-                }
-        except:
-            pass
-            
-        return {'views': 0, 'likes': 0, 'comments': 0, 'engagement_rate': 0}
+            if 'items' in data:
+                for item in data['items']:
+                    video_id = item['id']['videoId']
+                    content_item = {
+                        'title': item['snippet']['title'],
+                        'description': item['snippet']['description'][:200],
+                        'url': f"https://www.youtube.com/watch?v={video_id}",
+                        'creator': item['snippet']['channelTitle'],
+                        'published_at': item['snippet']['publishedAt']
+                    }
+                    content.append(content_item)
+                    
+            print(f"✅ Found {len(content)} videos for '{keyword}'")
+                    
+        except Exception as e:
+            print(f"Error with keyword '{keyword}': {e}")
     
-    def _get_sample_content(self):
-        """Sample content when API key is missing"""
-        return [
-            {
-                'platform': 'youtube',
-                'id': 'sample1',
-                'title': 'ChatGPT vs Claude: Ultimate AI Comparison',
-                'description': 'Comprehensive comparison of the latest AI models...',
-                'url': 'https://youtube.com/watch?v=sample1',
-                'thumbnail': '',
-                'creator': 'AI Expert Channel',
-                'published_at': datetime.now().isoformat(),
-                'keyword': 'ChatGPT',
-                'stats': {'views': 45000, 'likes': 2300, 'comments': 450, 'engagement_rate': 6.1}
-            }
-        ]
+    return content
+
+# Simple HTML generator
+def generate_html_report(content):
+    report_date = datetime.now().strftime("%B %d, %Y")
+    
+    html = f"""
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Trend Hunter Report - {report_date}</title>
+    <style>
+        body {{ font-family: 'Inter', sans-serif; max-width: 1200px; margin: 0 auto; padding: 20px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh; }}
+        .container {{ background: rgba(255, 255, 255, 0.95); border-radius: 25px; padding: 40px; box-shadow: 0 25px 50px rgba(0,0,0,0.15); }}
+        .header {{ text-align: center; background: linear-gradient(45deg, #667eea, #764ba2); color: white; padding: 30px; border-radius: 15px; margin-bottom: 30px; }}
+        .header h1 {{ margin: 0; font-size: 2.5em; }}
+        .content-grid {{ display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }}
+        .content-card {{ background: white; padding: 20px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }}
+        .platform-badge {{ background: #FF0000; color: white; padding: 5px 10px; border-radius: 15px; font-size: 0.8em; }}
+        h2 {{ color: #2c3e50; border-bottom: 2px solid #3498db; padding-bottom: 10px; }}
+        a {{ color: #3498db; text-decoration: none; }}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🚀 AI Trend Hunter</h1>
+            <p>Your AI trend discovery agent - {report_date}</p>
+            <p><strong>{len(content)} trending items discovered!</strong></p>
+        </div>
+        
+        <h2>🔥 Latest AI Content from YouTube</h2>
+        <div class="content-grid">
+"""
+    
+    for item in content[:12]:  # Show top 12 items
+        html += f"""
+        <div class="content-card">
+            <span class="platform-badge">YOUTUBE</span>
+            <h3>{item['title']}</h3>
+            <p>{item['description']}...</p>
+            <p><strong>Creator:</strong> {item['creator']}</p>
+            <a href="{item['url']}" target="_blank">View Video →</a>
+        </div>
+        """
+    
+    html += """
+        </div>
+        
+        <div style="text-align: center; margin-top: 40px; color: #666;">
+            <p>🤖 Generated by AI Trend Hunter • Next hunt: Every Tuesday & Friday</p>
+        </div>
+    </div>
+</body>
+</html>
+"""
+    
+    return html
+
+# Main execution
+if __name__ == "__main__":
+    print("🚀 Starting AI Trend Hunter...")
+    
+    # Collect content
+    content = collect_youtube_content()
+    print(f"📊 Total items collected: {len(content)}")
+    
+    # Generate report
+    print("📋 Generating HTML report...")
+    html_report = generate_html_report(content)
+    
+    # Create reports directory
+    import os
+    os.makedirs("reports", exist_ok=True)
+    
+    # Save report
+    report_path = "reports/index.html"
+    with open(report_path, 'w', encoding='utf-8') as f:
+        f.write(html_report)
+    
+    print(f"🎉 Report generated successfully: {report_path}")
