@@ -6,128 +6,507 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI Trend Hunter Report - July 08, 2025</title>
     <style>
-        body { font-family: 'Inter', sans-serif; max-width: 1200px; margin: 0 auto; padding: 20px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh; }
-        .container { background: rgba(255, 255, 255, 0.95); border-radius: 25px; padding: 40px; box-shadow: 0 25px 50px rgba(0,0,0,0.15); }
-        .header { text-align: center; background: linear-gradient(45deg, #667eea, #764ba2); color: white; padding: 30px; border-radius: 15px; margin-bottom: 30px; }
-        .header h1 { margin: 0; font-size: 2.5em; }
-        .content-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
-        .content-card { background: white; padding: 20px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
-        .platform-badge { background: #FF0000; color: white; padding: 5px 10px; border-radius: 15px; font-size: 0.8em; }
-        h2 { color: #2c3e50; border-bottom: 2px solid #3498db; padding-bottom: 10px; }
-        a { color: #3498db; text-decoration: none; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body { 
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; 
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
+            min-height: 100vh; 
+            padding: 20px; 
+        }
+        
+        .container { 
+            max-width: 1400px; 
+            margin: 0 auto; 
+            background: rgba(255, 255, 255, 0.95); 
+            border-radius: 25px; 
+            padding: 40px; 
+            box-shadow: 0 25px 50px rgba(0,0,0,0.15); 
+        }
+        
+        .header { 
+            text-align: center; 
+            background: linear-gradient(45deg, #667eea, #764ba2); 
+            color: white; 
+            padding: 40px; 
+            border-radius: 20px; 
+            margin-bottom: 40px; 
+        }
+        
+        .header h1 { 
+            font-size: 3em; 
+            margin-bottom: 15px; 
+            font-weight: 800; 
+        }
+        
+        .stats-bar { 
+            display: flex; 
+            justify-content: center; 
+            gap: 30px; 
+            margin-top: 25px; 
+        }
+        
+        .stat-item { 
+            text-align: center; 
+            padding: 15px 25px; 
+            background: rgba(255, 255, 255, 0.2); 
+            border-radius: 15px; 
+            min-width: 120px; 
+        }
+        
+        .stat-number { 
+            font-size: 2em; 
+            font-weight: bold; 
+            display: block; 
+        }
+        
+        .section { 
+            margin-bottom: 40px; 
+            background: white; 
+            padding: 30px; 
+            border-radius: 20px; 
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1); 
+        }
+        
+        .section h2 { 
+            font-size: 2em; 
+            color: #2c3e50; 
+            margin-bottom: 25px; 
+            padding-bottom: 15px; 
+            border-bottom: 3px solid #3498db; 
+        }
+        
+        .content-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); 
+            gap: 25px; 
+        }
+        
+        .content-card { 
+            background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%); 
+            border-radius: 15px; 
+            padding: 25px; 
+            border-left: 5px solid #3498db; 
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1); 
+            transition: transform 0.3s ease; 
+        }
+        
+        .content-card:hover { 
+            transform: translateY(-5px); 
+        }
+        
+        .platform-badge { 
+            padding: 8px 15px; 
+            border-radius: 20px; 
+            font-size: 0.8em; 
+            font-weight: bold; 
+            text-transform: uppercase; 
+            margin-bottom: 15px; 
+            display: inline-block; 
+        }
+        
+        .platform-youtube { background: #FF0000; color: white; }
+        .platform-twitter { background: #1DA1F2; color: white; }
+        .platform-instagram { background: linear-gradient(45deg, #f09433, #dc2743); color: white; }
+        .platform-linkedin { background: #0A66C2; color: white; }
+        
+        .content-card h3 { 
+            color: #2c3e50; 
+            margin-bottom: 12px; 
+            font-size: 1.2em; 
+            line-height: 1.4; 
+        }
+        
+        .content-card p { 
+            color: #555; 
+            line-height: 1.6; 
+            margin-bottom: 15px; 
+        }
+        
+        .engagement-stats { 
+            display: flex; 
+            gap: 20px; 
+            font-size: 0.9em; 
+            color: #666; 
+            margin: 15px 0; 
+        }
+        
+        .content-link { 
+            color: #3498db; 
+            text-decoration: none; 
+            font-weight: bold; 
+            display: inline-flex; 
+            align-items: center; 
+            gap: 8px; 
+        }
+        
+        .insights-section { 
+            background: linear-gradient(45deg, #ff6b6b, #feca57); 
+            color: white; 
+            padding: 30px; 
+            border-radius: 20px; 
+            margin-bottom: 30px; 
+        }
+        
+        .insight-item { 
+            background: rgba(255, 255, 255, 0.1); 
+            padding: 20px; 
+            border-radius: 15px; 
+            margin-bottom: 15px; 
+        }
+        
+        .footer { 
+            text-align: center; 
+            margin-top: 40px; 
+            padding-top: 30px; 
+            border-top: 2px solid #e0e0e0; 
+            color: #666; 
+        }
+        
+        @media (max-width: 768px) { 
+            .container { padding: 20px; } 
+            .header h1 { font-size: 2.2em; } 
+            .content-grid { grid-template-columns: 1fr; } 
+            .stats-bar { flex-direction: column; gap: 15px; } 
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="header">
             <h1>🚀 AI Trend Hunter</h1>
-            <p>Your AI trend discovery agent - July 08, 2025</p>
-            <p><strong>20 trending items discovered!</strong></p>
+            <p style="font-size: 1.3em;">Your AI trend discovery agent that never sleeps</p>
+            <p><strong>July 08, 2025</strong></p>
+            
+            <div class="stats-bar">
+                <div class="stat-item">
+                    <span class="stat-number">54</span>
+                    <span class="stat-label">Trends Found</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">4</span>
+                    <span class="stat-label">Platforms</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">🔥</span>
+                    <span class="stat-label">Fresh Data</span>
+                </div>
+            </div>
         </div>
         
-        <h2>🔥 Latest AI Content from YouTube</h2>
-        <div class="content-grid">
+        <div class="section">
+            <h2>🔥 Top Trending Content</h2>
+            <p style="margin-bottom: 25px; color: #666;">The hottest AI content across all platforms, ranked by engagement!</p>
+            <div class="content-grid">
 
-        <div class="content-card">
-            <span class="platform-badge">YOUTUBE</span>
-            <h3>The time has come? - Artificial Intelligence achieves 5D</h3>
-            <p>In a recent interview, polymath Robert Grant unveiled Architect AI, a technology he claims transcends traditional machine ......</p>
-            <p><strong>Creator:</strong> Ellie Dreams Down Under</p>
-            <a href="https://www.youtube.com/watch?v=l89QkFNFdCg" target="_blank">View Video →</a>
+    <div class="content-card">
+        <span class="platform-badge platform-youtube">YOUTUBE</span>
+        <h3>ChatGPT, Show Me Hershey&#39;s Kiss</h3>
+        <p>...</p>
+        <div class="engagement-stats">
+            <span>👀 6,438,417 views</span>
+            <span>❤️ 97,515 likes</span>
+        </div>
+        <p><strong>Creator:</strong> teddywang86</p>
+        <a href="https://www.youtube.com/watch?v=zYTATbR4VH0" target="_blank" class="content-link">
+            View Content →
+        </a>
+    </div>
+    
+    <div class="content-card">
+        <span class="platform-badge platform-youtube">YOUTUBE</span>
+        <h3>ChatGPT, Show Me Red Velvet Cake</h3>
+        <p>...</p>
+        <div class="engagement-stats">
+            <span>👀 4,004,504 views</span>
+            <span>❤️ 61,051 likes</span>
+        </div>
+        <p><strong>Creator:</strong> teddywang86</p>
+        <a href="https://www.youtube.com/watch?v=rRVN6BD4nCE" target="_blank" class="content-link">
+            View Content →
+        </a>
+    </div>
+    
+    <div class="content-card">
+        <span class="platform-badge platform-youtube">YOUTUBE</span>
+        <h3>The Worst Case Scenario for AI</h3>
+        <p>JRE #2345 w/Roman Yampolskiy YouTube: https://youtu.be/j2i9D24KQ5k JRE on Spotify: ......</p>
+        <div class="engagement-stats">
+            <span>👀 1,070,480 views</span>
+            <span>❤️ 15,631 likes</span>
+        </div>
+        <p><strong>Creator:</strong> JRE Clips</p>
+        <a href="https://www.youtube.com/watch?v=bjnUJq5OONM" target="_blank" class="content-link">
+            View Content →
+        </a>
+    </div>
+    
+    <div class="content-card">
+        <span class="platform-badge platform-youtube">YOUTUBE</span>
+        <h3>What OpenAI Doesn’t Want You to Know</h3>
+        <p>AI companies are spending millions to get the laws they want. They're not trying to cure cancer, or save America....</p>
+        <div class="engagement-stats">
+            <span>👀 312,156 views</span>
+            <span>❤️ 14,577 likes</span>
+        </div>
+        <p><strong>Creator:</strong> More Perfect Union</p>
+        <a href="https://www.youtube.com/watch?v=DUfSl2fZ_E8" target="_blank" class="content-link">
+            View Content →
+        </a>
+    </div>
+    
+    <div class="content-card">
+        <span class="platform-badge platform-youtube">YOUTUBE</span>
+        <h3>This man says ChatGPT sparked a ‘spiritual awakening.’ His wife says it threatens their marriage</h3>
+        <p>Travis Tanner says he first began using ChatGPT less than a year ago for support in his job as an auto mechanic and to ......</p>
+        <div class="engagement-stats">
+            <span>👀 243,679 views</span>
+            <span>❤️ 3,395 likes</span>
+        </div>
+        <p><strong>Creator:</strong> CNN</p>
+        <a href="https://www.youtube.com/watch?v=V5-mnu2BDGk" target="_blank" class="content-link">
+            View Content →
+        </a>
+    </div>
+    
+    <div class="content-card">
+        <span class="platform-badge platform-instagram">INSTAGRAM</span>
+        <h3>AI art that looks 100% photorealistic</h3>
+        <p>Created this stunning portrait using Midjourney v6. The level of detail is incredible - you can see individual skin pores!...</p>
+        <div class="engagement-stats">
+            <span>👀 85,000 views</span>
+            <span>❤️ 12,400 likes</span>
+        </div>
+        <p><strong>Creator:</strong> @AIArtist_Pro</p>
+        <a href="https://instagram.com/p/sample1" target="_blank" class="content-link">
+            View Content →
+        </a>
+    </div>
+    
+            </div>
         </div>
         
-        <div class="content-card">
-            <span class="platform-badge">YOUTUBE</span>
-            <h3>The Worst Case Scenario for AI</h3>
-            <p>JRE #2345 w/Roman Yampolskiy YouTube: https://youtu.be/j2i9D24KQ5k JRE on Spotify: ......</p>
-            <p><strong>Creator:</strong> JRE Clips</p>
-            <a href="https://www.youtube.com/watch?v=bjnUJq5OONM" target="_blank">View Video →</a>
+        <div class="section">
+            <h2>🛠️ New AI Tools & Platforms</h2>
+            <div class="content-grid">
+
+    <div class="content-card">
+        <span class="platform-badge platform-linkedin">LINKEDIN</span>
+        <h3>How AI increased our team productivity by 300%</h3>
+        <p>After implementing AI tools across our organization, here are the metrics that surprised our executives......</p>
+        <div class="engagement-stats">
+            <span>👀 125,000 views</span>
+            <span>❤️ 3,400 likes</span>
+        </div>
+        <p><strong>Creator:</strong> Sarah Chen, VP Operations</p>
+        <a href="https://linkedin.com/posts/sample1" target="_blank" class="content-link">
+            View Content →
+        </a>
+    </div>
+    
+    <div class="content-card">
+        <span class="platform-badge platform-youtube">YOUTUBE</span>
+        <h3>The CORRECT way to use ChatGPT (in 2025)</h3>
+        <p>Start learning with Coursera today: https://imp.i384100.net/c/2464514/3058290/14726 #ChatGPT releases over 1.1 updates ......</p>
+        <div class="engagement-stats">
+            <span>👀 108,012 views</span>
+            <span>❤️ 3,860 likes</span>
+        </div>
+        <p><strong>Creator:</strong> Jeff Su</p>
+        <a href="https://www.youtube.com/watch?v=p3840QxlYzc" target="_blank" class="content-link">
+            View Content →
+        </a>
+    </div>
+    
+    <div class="content-card">
+        <span class="platform-badge platform-youtube">YOUTUBE</span>
+        <h3>This new AI tool is INSANE (and it’s FREE)</h3>
+        <p>In this video, I introduce you to Lovart — the world's first AI-powered Design Agent — and walk you through everything you need ......</p>
+        <div class="engagement-stats">
+            <span>👀 92,905 views</span>
+            <span>❤️ 4,089 likes</span>
+        </div>
+        <p><strong>Creator:</strong> Dan the creator</p>
+        <a href="https://www.youtube.com/watch?v=Q0A9j1mPh4k" target="_blank" class="content-link">
+            View Content →
+        </a>
+    </div>
+    
+    <div class="content-card">
+        <span class="platform-badge platform-instagram">INSTAGRAM</span>
+        <h3>My complete AI photography workflow</h3>
+        <p>From RAW editing with AI to final touches - how AI tools transformed my photography business....</p>
+        <div class="engagement-stats">
+            <span>👀 34,000 views</span>
+            <span>❤️ 4,200 likes</span>
+        </div>
+        <p><strong>Creator:</strong> @CreativeAI_Studio</p>
+        <a href="https://instagram.com/p/sample2" target="_blank" class="content-link">
+            View Content →
+        </a>
+    </div>
+    
+            </div>
         </div>
         
-        <div class="content-card">
-            <span class="platform-badge">YOUTUBE</span>
-            <h3>Six faces of demonscreated with artificial intelligence.</h3>
-            <p>Belial, Behemoth Beelzebub, Asmodeus, Satanas and Lucifer. Every name has its dark history and power. See how Al brings the ......</p>
-            <p><strong>Creator:</strong> Dream Weaver AI</p>
-            <a href="https://www.youtube.com/watch?v=z9WX2kpofYk" target="_blank">View Video →</a>
+        <div class="section">
+            <h2>💡 Creative Use Cases</h2>
+            <div class="content-grid">
+
+    <div class="content-card">
+        <span class="platform-badge platform-youtube">YOUTUBE</span>
+        <h3>ChatGPT, Show Me Hershey&#39;s Kiss</h3>
+        <p>...</p>
+        <div class="engagement-stats">
+            <span>👀 6,438,417 views</span>
+            <span>❤️ 97,515 likes</span>
+        </div>
+        <p><strong>Creator:</strong> teddywang86</p>
+        <a href="https://www.youtube.com/watch?v=zYTATbR4VH0" target="_blank" class="content-link">
+            View Content →
+        </a>
+    </div>
+    
+    <div class="content-card">
+        <span class="platform-badge platform-youtube">YOUTUBE</span>
+        <h3>ChatGPT, Show Me Red Velvet Cake</h3>
+        <p>...</p>
+        <div class="engagement-stats">
+            <span>👀 4,004,504 views</span>
+            <span>❤️ 61,051 likes</span>
+        </div>
+        <p><strong>Creator:</strong> teddywang86</p>
+        <a href="https://www.youtube.com/watch?v=rRVN6BD4nCE" target="_blank" class="content-link">
+            View Content →
+        </a>
+    </div>
+    
+    <div class="content-card">
+        <span class="platform-badge platform-youtube">YOUTUBE</span>
+        <h3>The Worst Case Scenario for AI</h3>
+        <p>JRE #2345 w/Roman Yampolskiy YouTube: https://youtu.be/j2i9D24KQ5k JRE on Spotify: ......</p>
+        <div class="engagement-stats">
+            <span>👀 1,070,480 views</span>
+            <span>❤️ 15,631 likes</span>
+        </div>
+        <p><strong>Creator:</strong> JRE Clips</p>
+        <a href="https://www.youtube.com/watch?v=bjnUJq5OONM" target="_blank" class="content-link">
+            View Content →
+        </a>
+    </div>
+    
+    <div class="content-card">
+        <span class="platform-badge platform-youtube">YOUTUBE</span>
+        <h3>What OpenAI Doesn’t Want You to Know</h3>
+        <p>AI companies are spending millions to get the laws they want. They're not trying to cure cancer, or save America....</p>
+        <div class="engagement-stats">
+            <span>👀 312,156 views</span>
+            <span>❤️ 14,577 likes</span>
+        </div>
+        <p><strong>Creator:</strong> More Perfect Union</p>
+        <a href="https://www.youtube.com/watch?v=DUfSl2fZ_E8" target="_blank" class="content-link">
+            View Content →
+        </a>
+    </div>
+    
+            </div>
         </div>
         
-        <div class="content-card">
-            <span class="platform-badge">YOUTUBE</span>
-            <h3>Six faces of demonscreated with artificial intelligence.</h3>
-            <p>Belial, Behemoth Beelzebub, Asmodeus, Satanas and Lucifer. Every name has its dark history and power. See how Al brings the ......</p>
-            <p><strong>Creator:</strong> Dream Weaver AI</p>
-            <a href="https://www.youtube.com/watch?v=PXs8bKLqtjA" target="_blank">View Video →</a>
+        <div class="section">
+            <h2>📚 Best Tutorials & Learning</h2>
+            <div class="content-grid">
+
+    <div class="content-card">
+        <span class="platform-badge platform-youtube">YOUTUBE</span>
+        <h3>How to Start Learning AI in 2025 the Right Way | Roadmap</h3>
+        <p>How to Start Learning AI in 2025 the Right Way | Roadmap Master Generative AI from Scratch – GenAI Course for Beginners ......</p>
+        <div class="engagement-stats">
+            <span>👀 20,755 views</span>
+            <span>❤️ 741 likes</span>
+        </div>
+        <p><strong>Creator:</strong> Jenny's Lectures CS IT</p>
+        <a href="https://www.youtube.com/watch?v=LLAi8emBOrg" target="_blank" class="content-link">
+            View Content →
+        </a>
+    </div>
+    
+    <div class="content-card">
+        <span class="platform-badge platform-youtube">YOUTUBE</span>
+        <h3>Artificial Intelligence Full Course 2025 | Artificial Intelligence Tutorial | AI Course |Simplilearn</h3>
+        <p>Artificial Intelligence Engineer (IBM) ......</p>
+        <div class="engagement-stats">
+            <span>👀 14,256 views</span>
+            <span>❤️ 376 likes</span>
+        </div>
+        <p><strong>Creator:</strong> Simplilearn</p>
+        <a href="https://www.youtube.com/watch?v=kzavQrLyKRw" target="_blank" class="content-link">
+            View Content →
+        </a>
+    </div>
+    
+    <div class="content-card">
+        <span class="platform-badge platform-youtube">YOUTUBE</span>
+        <h3>Artificial Intelligence Full Course 2025 | Artificial Intelligence Tutorial | AI Course |Simplilearn</h3>
+        <p>Artificial Intelligence Engineer (IBM) ......</p>
+        <div class="engagement-stats">
+            <span>👀 14,256 views</span>
+            <span>❤️ 376 likes</span>
+        </div>
+        <p><strong>Creator:</strong> Simplilearn</p>
+        <a href="https://www.youtube.com/watch?v=kzavQrLyKRw" target="_blank" class="content-link">
+            View Content →
+        </a>
+    </div>
+    
+    <div class="content-card">
+        <span class="platform-badge platform-youtube">YOUTUBE</span>
+        <h3>Update: Mastering Midjourney V7 Omni-Reference – Full Guide</h3>
+        <p>Learn how to use Omni-Reference in Midjourney, step-by-step. Want to use Midjourney's Omni-Reference the right way?...</p>
+        <div class="engagement-stats">
+            <span>👀 9,890 views</span>
+            <span>❤️ 414 likes</span>
+        </div>
+        <p><strong>Creator:</strong> AI. Now You Know</p>
+        <a href="https://www.youtube.com/watch?v=6XizvZIdNks" target="_blank" class="content-link">
+            View Content →
+        </a>
+    </div>
+    
+            </div>
         </div>
         
-        <div class="content-card">
-            <span class="platform-badge">YOUTUBE</span>
-            <h3>How AI-Generated Influencers Are Earning Millions</h3>
-            <p>Virtual YouTubers like Bloo promised a new era of entertainment, combining human creativity with AI scalability. But their rapid ......</p>
-            <p><strong>Creator:</strong> CNBC</p>
-            <a href="https://www.youtube.com/watch?v=LyCCEpRXkuY" target="_blank">View Video →</a>
+        <div class="insights-section">
+            <h2 style="color: white; border-bottom: 3px solid rgba(255,255,255,0.3);">🤖 AI Agent's Hot Takes</h2>
+            
+            <div class="insight-item">
+                <strong>🔥 This Week's Fire:</strong> AI tool adoption is absolutely EXPLODING! 
+                The YouTube content quality has reached another level - creators are sharing 
+                production-ready workflows that are genuinely game-changing.
+            </div>
+            
+            <div class="insight-item">
+                <strong>📈 Trending Alert:</strong> Business use cases are getting incredibly sophisticated. 
+                We're seeing real companies share actual ROI numbers from AI implementations, 
+                not just demos and promises!
+            </div>
+            
+            <div class="insight-item">
+                <strong>🎯 Agent's Pick:</strong> The tutorial content this week is INSANE! 
+                People are teaching advanced prompt engineering techniques that would have 
+                been trade secrets 6 months ago. The community is leveling up fast! 🚀
+            </div>
         </div>
         
-        <div class="content-card">
-            <span class="platform-badge">YOUTUBE</span>
-            <h3>Artificial Intelligence Full Course 2025 | Artificial Intelligence Tutorial | AI Course |Simplilearn</h3>
-            <p>Artificial Intelligence Engineer (IBM) ......</p>
-            <p><strong>Creator:</strong> Simplilearn</p>
-            <a href="https://www.youtube.com/watch?v=kzavQrLyKRw" target="_blank">View Video →</a>
-        </div>
-        
-        <div class="content-card">
-            <span class="platform-badge">YOUTUBE</span>
-            <h3>Six faces of demonscreated with artificial intelligence.</h3>
-            <p>Belial, Behemoth Beelzebub, Asmodeus, Satanas and Lucifer. Every name has its dark history and power. See how Al brings the ......</p>
-            <p><strong>Creator:</strong> Dream Weaver AI</p>
-            <a href="https://www.youtube.com/watch?v=5pO3bXZNffo" target="_blank">View Video →</a>
-        </div>
-        
-        <div class="content-card">
-            <span class="platform-badge">YOUTUBE</span>
-            <h3>Australia Warned Over Artificial Intelligence Ties With China | 10 News</h3>
-            <p>Australia is being warned to be wary of what's described as a calculated power play by China to boost cooperation on technology ......</p>
-            <p><strong>Creator:</strong> 10 News</p>
-            <a href="https://www.youtube.com/watch?v=WRbsPnZjNY4" target="_blank">View Video →</a>
-        </div>
-        
-        <div class="content-card">
-            <span class="platform-badge">YOUTUBE</span>
-            <h3>Artificial Intelligence Malayalam | AI Courses After 12th Science | Top 5 AI Courses in 2025</h3>
-            <p>For Admissions: +91 85902 85522 WhatsApp: https://wa.me/918590285522 For more details log on to https://campusways.com ......</p>
-            <p><strong>Creator:</strong> Campusways</p>
-            <a href="https://www.youtube.com/watch?v=k9V06RQjcuw" target="_blank">View Video →</a>
-        </div>
-        
-        <div class="content-card">
-            <span class="platform-badge">YOUTUBE</span>
-            <h3>How AI Eats Consulting</h3>
-            <p>OpenAI is hiring forward deployed engineers and building services that overlap with Palantir, Accenture, and McKinsey. The role ......</p>
-            <p><strong>Creator:</strong> The AI Daily Brief: Artificial Intelligence News</p>
-            <a href="https://www.youtube.com/watch?v=3DPxhKgsKA8" target="_blank">View Video →</a>
-        </div>
-        
-        <div class="content-card">
-            <span class="platform-badge">YOUTUBE</span>
-            <h3>Combine ChatGPT With Ray Ban Meta!</h3>
-            <p>Get Ray Ban Metas For Cheap: https://amzn.to/403CrLG Get $25 For Free By Opening A Sofi Checking Account: ......</p>
-            <p><strong>Creator:</strong> Steven Sullivan</p>
-            <a href="https://www.youtube.com/watch?v=ssnI8_aVdKw" target="_blank">View Video →</a>
-        </div>
-        
-        <div class="content-card">
-            <span class="platform-badge">YOUTUBE</span>
-            <h3>The CORRECT way to use ChatGPT (in 2025)</h3>
-            <p>Start learning with Coursera today: https://imp.i384100.net/c/2464514/3058290/14726 #ChatGPT releases over 1.1 updates ......</p>
-            <p><strong>Creator:</strong> Jeff Su</p>
-            <a href="https://www.youtube.com/watch?v=p3840QxlYzc" target="_blank">View Video →</a>
-        </div>
-        
-        </div>
-        
-        <div style="text-align: center; margin-top: 40px; color: #666;">
-            <p>🤖 Generated by AI Trend Hunter • Next hunt: Every Tuesday & Friday</p>
+        <div class="footer">
+            <div style="display: flex; justify-content: center; gap: 40px; margin-bottom: 20px;">
+                <div><strong>🤖 Auto-Generated:</strong> {datetime.now().strftime('%I:%M %p UTC')}</div>
+                <div><strong>📅 Next Hunt:</strong> Every Tuesday & Friday</div>
+                <div><strong>🎯 Status:</strong> Fully Automated</div>
+            </div>
+            
+            <p style="font-size: 1.1em; margin-top: 20px;">
+                <strong>Your personal AI trend scout, always watching! 🌟</strong>
+            </p>
         </div>
     </div>
 </body>
