@@ -1,95 +1,57 @@
+
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>تقرير رصد عامر القحطاني - فبراير 2026</title>
+    <title>AI Trend Hunter Report - February 24, 2026</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
         body { 
-            font-family: 'Segoe UI', 'Tahoma', 'Arial', sans-serif; 
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%); 
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; 
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
             min-height: 100vh; 
             padding: 20px; 
-            direction: rtl;
         }
         
         .container { 
             max-width: 1400px; 
             margin: 0 auto; 
-            background: rgba(255, 255, 255, 0.97); 
+            background: rgba(255, 255, 255, 0.95); 
             border-radius: 25px; 
             padding: 40px; 
-            box-shadow: 0 25px 50px rgba(0,0,0,0.3); 
+            box-shadow: 0 25px 50px rgba(0,0,0,0.15); 
         }
         
         .header { 
             text-align: center; 
-            background: linear-gradient(45deg, #1a1a2e, #0f3460, #533483); 
+            background: linear-gradient(45deg, #667eea, #764ba2); 
             color: white; 
-            padding: 45px; 
+            padding: 40px; 
             border-radius: 20px; 
             margin-bottom: 40px; 
-            position: relative;
-            overflow: hidden;
-        }
-
-        .header::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 60%);
-            animation: pulse 4s ease-in-out infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); opacity: 0.5; }
-            50% { transform: scale(1.1); opacity: 1; }
         }
         
         .header h1 { 
-            font-size: 2.8em; 
-            margin-bottom: 10px; 
-            font-weight: 800;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
-        }
-
-        .header .subtitle {
-            font-size: 1.2em;
-            opacity: 0.9;
-            margin-bottom: 8px;
-        }
-
-        .header .date-badge {
-            display: inline-block;
-            background: rgba(255,255,255,0.2);
-            padding: 8px 20px;
-            border-radius: 20px;
-            font-size: 1em;
-            margin-top: 10px;
-            border: 1px solid rgba(255,255,255,0.3);
+            font-size: 3em; 
+            margin-bottom: 15px; 
+            font-weight: 800; 
         }
         
         .stats-bar { 
             display: flex; 
             justify-content: center; 
-            gap: 25px; 
-            margin-top: 30px; 
-            flex-wrap: wrap;
+            gap: 30px; 
+            margin-top: 25px; 
         }
         
         .stat-item { 
             text-align: center; 
             padding: 15px 25px; 
-            background: rgba(255, 255, 255, 0.15); 
+            background: rgba(255, 255, 255, 0.2); 
             border-radius: 15px; 
-            min-width: 130px;
-            border: 1px solid rgba(255,255,255,0.2);
-            backdrop-filter: blur(10px);
+            min-width: 120px; 
         }
         
         .stat-number { 
@@ -97,56 +59,26 @@
             font-weight: bold; 
             display: block; 
         }
-
-        .stat-label {
-            font-size: 0.85em;
-            opacity: 0.85;
-            margin-top: 4px;
-        }
         
         .section { 
             margin-bottom: 40px; 
             background: white; 
-            padding: 35px; 
+            padding: 30px; 
             border-radius: 20px; 
-            box-shadow: 0 8px 30px rgba(0,0,0,0.08); 
-            border: 1px solid rgba(0,0,0,0.05);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1); 
         }
         
         .section h2 { 
-            font-size: 1.8em; 
-            color: #1a1a2e; 
+            font-size: 2em; 
+            color: #2c3e50; 
             margin-bottom: 25px; 
             padding-bottom: 15px; 
-            border-bottom: 3px solid #0f3460; 
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .section-new {
-            border-right: 5px solid #e74c3c;
-        }
-
-        .new-badge {
-            background: #e74c3c;
-            color: white;
-            font-size: 0.55em;
-            padding: 4px 10px;
-            border-radius: 10px;
-            vertical-align: middle;
-            font-weight: bold;
-            animation: blink 1.5s ease-in-out infinite;
-        }
-
-        @keyframes blink {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.5; }
+            border-bottom: 3px solid #3498db; 
         }
         
         .content-grid { 
             display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); 
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); 
             gap: 25px; 
         }
         
@@ -154,228 +86,73 @@
             background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%); 
             border-radius: 15px; 
             padding: 25px; 
-            border-right: 5px solid #0f3460; 
-            box-shadow: 0 5px 20px rgba(0,0,0,0.08); 
-            transition: transform 0.3s ease, box-shadow 0.3s ease; 
+            border-left: 5px solid #3498db; 
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1); 
+            transition: transform 0.3s ease; 
         }
         
         .content-card:hover { 
-            transform: translateY(-5px);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
-        }
-
-        .content-card.twitter-card {
-            border-right-color: #1DA1F2;
-        }
-
-        .content-card.news-card {
-            border-right-color: #27ae60;
-        }
-
-        .content-card.conference-card {
-            border-right-color: #e67e22;
+            transform: translateY(-5px); 
         }
         
         .platform-badge { 
-            padding: 6px 14px; 
+            padding: 8px 15px; 
             border-radius: 20px; 
-            font-size: 0.78em; 
+            font-size: 0.8em; 
             font-weight: bold; 
             text-transform: uppercase; 
             margin-bottom: 15px; 
-            display: inline-block;
-            letter-spacing: 0.5px;
+            display: inline-block; 
         }
         
+        .platform-youtube { background: #FF0000; color: white; }
         .platform-twitter { background: #1DA1F2; color: white; }
-        .platform-news { background: #27ae60; color: white; }
-        .platform-conference { background: #e67e22; color: white; }
-        .platform-sdaia { background: #1a1a2e; color: white; }
+        .platform-instagram { background: linear-gradient(45deg, #f09433, #dc2743); color: white; }
+        .platform-linkedin { background: #0A66C2; color: white; }
         
         .content-card h3 { 
-            color: #1a1a2e; 
+            color: #2c3e50; 
             margin-bottom: 12px; 
-            font-size: 1.15em; 
-            line-height: 1.5; 
-            font-weight: 700;
+            font-size: 1.2em; 
+            line-height: 1.4; 
         }
         
         .content-card p { 
             color: #555; 
-            line-height: 1.7; 
-            margin-bottom: 12px;
-            font-size: 0.95em;
-        }
-
-        .tweet-text {
-            background: #f0f7ff;
-            border-right: 3px solid #1DA1F2;
-            padding: 15px;
-            border-radius: 10px;
-            font-style: italic;
-            color: #333;
-            margin: 12px 0;
-            line-height: 1.7;
+            line-height: 1.6; 
+            margin-bottom: 15px; 
         }
         
         .engagement-stats { 
             display: flex; 
             gap: 20px; 
-            font-size: 0.88em; 
+            font-size: 0.9em; 
             color: #666; 
-            margin: 12px 0; 
-            flex-wrap: wrap;
-        }
-
-        .engagement-stats span {
-            background: #f5f5f5;
-            padding: 4px 10px;
-            border-radius: 10px;
+            margin: 15px 0; 
         }
         
         .content-link { 
-            color: #0f3460; 
+            color: #3498db; 
             text-decoration: none; 
             font-weight: bold; 
             display: inline-flex; 
             align-items: center; 
-            gap: 6px;
-            font-size: 0.9em;
-            padding: 8px 15px;
-            background: #f0f4ff;
-            border-radius: 8px;
-            transition: background 0.2s;
-        }
-
-        .content-link:hover {
-            background: #dce8ff;
-        }
-
-        .date-label {
-            font-size: 0.82em;
-            color: #888;
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-            gap: 5px;
+            gap: 8px; 
         }
         
         .insights-section { 
-            background: linear-gradient(135deg, #1a1a2e 0%, #0f3460 100%); 
+            background: linear-gradient(45deg, #ff6b6b, #feca57); 
             color: white; 
-            padding: 35px; 
+            padding: 30px; 
             border-radius: 20px; 
             margin-bottom: 30px; 
-        }
-
-        .insights-section h2 {
-            color: white;
-            border-bottom: 3px solid rgba(255,255,255,0.3);
-            margin-bottom: 25px;
-            padding-bottom: 15px;
-            font-size: 1.8em;
         }
         
         .insight-item { 
             background: rgba(255, 255, 255, 0.1); 
-            padding: 20px 25px; 
+            padding: 20px; 
             border-radius: 15px; 
-            margin-bottom: 15px;
-            border-right: 4px solid rgba(255,255,255,0.3);
-            line-height: 1.7;
-        }
-
-        .insight-item:last-child {
-            margin-bottom: 0;
-        }
-
-        .profile-section {
-            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-            border-radius: 20px;
-            padding: 30px;
-            margin-bottom: 40px;
-            display: flex;
-            align-items: center;
-            gap: 30px;
-            border: 1px solid #dee2e6;
-        }
-
-        .profile-avatar {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #1a1a2e, #0f3460);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2.5em;
-            color: white;
-            flex-shrink: 0;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
-        }
-
-        .profile-info h3 {
-            font-size: 1.5em;
-            color: #1a1a2e;
-            margin-bottom: 5px;
-        }
-
-        .profile-info .handle {
-            color: #1DA1F2;
-            font-size: 1em;
-            margin-bottom: 10px;
-        }
-
-        .profile-info p {
-            color: #555;
-            line-height: 1.6;
-            font-size: 0.95em;
-        }
-
-        .profile-stats {
-            display: flex;
-            gap: 20px;
-            margin-top: 15px;
-        }
-
-        .profile-stat {
-            text-align: center;
-        }
-
-        .profile-stat .num {
-            font-size: 1.3em;
-            font-weight: bold;
-            color: #1a1a2e;
-        }
-
-        .profile-stat .lbl {
-            font-size: 0.8em;
-            color: #777;
-        }
-
-        .timeline-section {
-            position: relative;
-        }
-
-        .timeline-item {
-            display: flex;
-            gap: 20px;
-            margin-bottom: 25px;
-            align-items: flex-start;
-        }
-
-        .timeline-dot {
-            width: 14px;
-            height: 14px;
-            border-radius: 50%;
-            background: #0f3460;
-            flex-shrink: 0;
-            margin-top: 5px;
-            box-shadow: 0 0 0 4px rgba(15, 52, 96, 0.2);
-        }
-
-        .timeline-content {
-            flex: 1;
+            margin-bottom: 15px; 
         }
         
         .footer { 
@@ -385,236 +162,336 @@
             border-top: 2px solid #e0e0e0; 
             color: #666; 
         }
-
-        .footer-grid {
-            display: flex;
-            justify-content: center;
-            gap: 40px;
-            margin-bottom: 20px;
-            flex-wrap: wrap;
-        }
-
-        .footer-item {
-            text-align: center;
-        }
-
-        .update-banner {
-            background: linear-gradient(45deg, #e74c3c, #c0392b);
-            color: white;
-            padding: 15px 25px;
-            border-radius: 12px;
-            margin-bottom: 30px;
-            text-align: center;
-            font-weight: bold;
-            font-size: 1.05em;
-        }
         
         @media (max-width: 768px) { 
             .container { padding: 20px; } 
-            .header h1 { font-size: 2em; } 
+            .header h1 { font-size: 2.2em; } 
             .content-grid { grid-template-columns: 1fr; } 
-            .stats-bar { flex-direction: column; gap: 15px; align-items: center; }
-            .profile-section { flex-direction: column; text-align: center; }
+            .stats-bar { flex-direction: column; gap: 15px; } 
         }
     </style>
 </head>
 <body>
     <div class="container">
-        
-        <!-- Header -->
         <div class="header">
-            <h1>🔍 رصد عامر القحطاني</h1>
-            <p class="subtitle">متابعة آخر أنشطة وتغريدات الأستاذ عامر هاشم القحطاني</p>
-            <span class="date-badge">📅 آخر تحديث: 23 فبراير 2026</span>
+            <h1>🚀 AI Trend Hunter</h1>
+            <p style="font-size: 1.3em;">Your AI trend discovery agent that never sleeps</p>
+            <p><strong>February 24, 2026</strong></p>
             
             <div class="stats-bar">
                 <div class="stat-item">
-                    <span class="stat-number">2</span>
-                    <span class="stat-label">تغريدات جديدة</span>
+                    <span class="stat-number">54</span>
+                    <span class="stat-label">Trends Found</span>
                 </div>
                 <div class="stat-item">
-                    <span class="stat-number">1</span>
-                    <span class="stat-label">مؤتمر</span>
+                    <span class="stat-number">4</span>
+                    <span class="stat-label">Platforms</span>
                 </div>
                 <div class="stat-item">
-                    <span class="stat-number">22.3K</span>
-                    <span class="stat-label">متابع على X</span>
+                    <span class="stat-number">🔥</span>
+                    <span class="stat-label">Fresh Data</span>
                 </div>
-                <div class="stat-item">
-                    <span class="stat-number">🟢</span>
-                    <span class="stat-label">نشط</span>
-                </div>
-            </div>
-        </div>
-
-        <!-- Update Banner -->
-        <div class="update-banner">
-            🔴 تحديث جديد — تم رصد 2 تغريدة جديدة ومشاركة في مؤتمر ICAN 2026 خلال الفترة 1–16 فبراير 2026
-        </div>
-
-        <!-- Profile Section -->
-        <div class="profile-section">
-            <div class="profile-avatar">ع</div>
-            <div class="profile-info">
-                <h3>عامر هاشم القحطاني ✓</h3>
-                <div class="handle">@amer402</div>
-                <p>مستشار رئيس الهيئة السعودية للبيانات والذكاء الاصطناعي "سدايا" منذ يناير 2024. شغل سابقاً منصب الرئيس التنفيذي لتطوير الأعمال في سدايا. يقيم في الرياض.</p>
-                <div class="profile-stats">
-                    <div class="profile-stat">
-                        <div class="num">7,482</div>
-                        <div class="lbl">تغريدة</div>
-                    </div>
-                    <div class="profile-stat">
-                        <div class="num">22.3K</div>
-                        <div class="lbl">متابع</div>
-                    </div>
-                    <div class="profile-stat">
-                        <div class="num">346</div>
-                        <div class="lbl">يتابع</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- New Tweets Section -->
-        <div class="section section-new">
-            <h2>🐦 تغريدات حديثة <span class="new-badge">جديد</span></h2>
-            <p style="margin-bottom: 25px; color: #666;">أحدث تغريدات الأستاذ عامر القحطاني على منصة X خلال فبراير 2026</p>
-            <div class="content-grid">
-
-                <div class="content-card twitter-card">
-                    <span class="platform-badge platform-twitter">X / تويتر</span>
-                    <div class="date-label">📅 1 فبراير 2026</div>
-                    <h3>زحمة الرياض طويلة الأمد — حلول عملية</h3>
-                    <div class="tweet-text">
-                        "نحن قادمون على موجة زحمة طويلة الأمد في الرياض.. والتعايش معها هو الخيار الأذكى حاليًا. إليكم باقة حلول عملية (من واقع المعاناة اليومية): 1. تقبل الواقع وتعايش معه — الزحمة موجودة، فلا داعي للتوتر الزائد كل يوم. 2. غيّر وسيلة التنقل إذا استطعت..."
-                    </div>
-                    <p>تغريدة واسعة الانتشار أثارت نقاشاً واسعاً حول أزمة الازدحام المروري في الرياض، وقدّم فيها الأستاذ عامر حلولاً عملية مستوحاة من تجربته اليومية.</p>
-                    <div class="engagement-stats">
-                        <span>🔁 تفاعل واسع</span>
-                        <span>📍 الرياض</span>
-                    </div>
-                    <a href="https://x.com/amer402" target="_blank" class="content-link">عرض الملف الشخصي ←</a>
-                </div>
-
-                <div class="content-card twitter-card">
-                    <span class="platform-badge platform-twitter">X / تويتر</span>
-                    <div class="date-label">📅 16 فبراير 2026</div>
-                    <h3>الدول تبني الجسور والقطاع الخاص يتحرك عليها</h3>
-                    <div class="tweet-text">
-                        "الدول تبني الجسور والقطاع الخاص يتحرك عليها، أحسنت ابا نايف."
-                    </div>
-                    <p>تعليق موجز ومعبّر على أهمية التكامل بين الدور الحكومي في بناء البنية التحتية والقطاع الخاص في الاستثمار عليها وتحريكها.</p>
-                    <div class="engagement-stats">
-                        <span>❤️ 5 إعجاب</span>
-                        <span>🔁 33 إعادة تغريد</span>
-                        <span>👁️ 26,221 مشاهدة</span>
-                    </div>
-                    <a href="https://x.com/amer402/status/2023420619254383073" target="_blank" class="content-link">عرض التغريدة ←</a>
-                </div>
-
-            </div>
-        </div>
-
-        <!-- ICAN 2026 Section -->
-        <div class="section section-new">
-            <h2>🎤 مؤتمر ICAN 2026 <span class="new-badge">جديد</span></h2>
-            <p style="margin-bottom: 25px; color: #666;">مشاركة سدايا وعامر القحطاني في المؤتمر الدولي لبناء القدرات في البيانات والذكاء الاصطناعي</p>
-            <div class="content-grid">
-
-                <div class="content-card conference-card">
-                    <span class="platform-badge platform-conference">مؤتمر ICAN 2026</span>
-                    <div class="date-label">📅 28–29 يناير 2026 | جامعة الملك سعود، الرياض</div>
-                    <h3>ختام مؤتمر ICAN 2026 بإطلاق 7 مبادرات و27 اتفاقية استراتيجية</h3>
-                    <p>اختتم المؤتمر الدولي لبناء القدرات في البيانات والذكاء الاصطناعي "ICAN 2026" أعماله في الرياض، الذي نظمته الهيئة السعودية للبيانات والذكاء الاصطناعي "سدايا" بجامعة الملك سعود. وشهد المؤتمر حضوراً استثنائياً تجاوز 30 ألف مشارك.</p>
-                    <p>شارك الأستاذ عامر القحطاني بصفته مستشاراً لرئيس سدايا في هذا الحدث البارز الذي جمع أكثر من 64 متحدثاً عالمياً في 14 جلسة حوارية و15 ورشة عمل.</p>
-                    <div class="engagement-stats">
-                        <span>👥 +30,000 مشارك</span>
-                        <span>🌍 64 متحدثاً دولياً</span>
-                    </div>
-                    <a href="https://ican2026.com" target="_blank" class="content-link">الموقع الرسمي ←</a>
-                </div>
-
-                <div class="content-card conference-card">
-                    <span class="platform-badge platform-sdaia">سدايا</span>
-                    <div class="date-label">📅 يناير 2026</div>
-                    <h3>مبادرات سدايا في ICAN 2026</h3>
-                    <p>أطلقت سدايا خلال المؤتمر عدة مبادرات استراتيجية بارزة:</p>
-                    <p><strong>🔹 مبادرة "سماي 2":</strong> بالشراكة مع 11 وزارة، تهدف لتمكين الكوادر الحكومية من استخدام الذكاء الاصطناعي بمسؤولية وكفاءة.</p>
-                    <p><strong>🔹 منصة "أذكى X":</strong> منصة وطنية لبناء القدرات بالتعاون مع IBM وMicrosoft وAWS وOracle.</p>
-                    <p><strong>🔹 الأطر والمعايير الوطنية:</strong> إطلاق النسخة الثانية من الإطار الوطني لمعايير البرامج الأكاديمية والمهنية.</p>
-                    <div class="engagement-stats">
-                        <span>📋 7 مبادرات</span>
-                        <span>🤝 27 اتفاقية</span>
-                        <span>🏢 50+ جهة شريكة</span>
-                    </div>
-                    <a href="https://news50.sa/tech/ican-2026-concludes-with-major-ai-initiatives-and-agreements/" target="_blank" class="content-link">اقرأ التفاصيل ←</a>
-                </div>
-
-            </div>
-        </div>
-
-        <!-- Background Section -->
-        <div class="section">
-            <h2>👤 نبذة عن عامر القحطاني</h2>
-            <div class="content-grid">
-
-                <div class="content-card">
-                    <span class="platform-badge platform-sdaia">سدايا</span>
-                    <h3>المنصب الحالي</h3>
-                    <p>مستشار رئيس الهيئة السعودية للبيانات والذكاء الاصطناعي "سدايا" منذ يناير 2024. يعمل على دعم توجهات المملكة في مجال التحول الرقمي والذكاء الاصطناعي ضمن رؤية 2030.</p>
-                    <div class="engagement-stats">
-                        <span>📍 الرياض</span>
-                        <span>🏛️ سدايا</span>
-                    </div>
-                </div>
-
-                <div class="content-card">
-                    <span class="platform-badge platform-sdaia">سدايا</span>
-                    <h3>المسيرة المهنية</h3>
-                    <p>شغل سابقاً منصب الرئيس التنفيذي لتطوير الأعمال في سدايا، حيث قاد مبادرات استراتيجية لتطوير قطاع البيانات والذكاء الاصطناعي في المملكة العربية السعودية.</p>
-                    <a href="https://manhom.com/%D8%B4%D8%AE%D8%B5%D9%8A%D8%A7%D8%AA/%D8%B9%D8%A7%D9%85%D8%B1-%D8%A7%D9%84%D9%82%D8%AD%D8%B7%D8%A7%D9%86%D9%8A/" target="_blank" class="content-link">السيرة الذاتية الكاملة ←</a>
-                </div>
-
-            </div>
-        </div>
-
-        <!-- AI Insights Section -->
-        <div class="insights-section">
-            <h2>🤖 تحليل وملاحظات</h2>
-            
-            <div class="insight-item">
-                <strong>📊 نشاط فبراير 2026:</strong> رصدنا نشاطاً ملحوظاً للأستاذ عامر القحطاني خلال الفترة الممتدة من 1 إلى 16 فبراير 2026، تمثّل في تغريدتين لاقتا تفاعلاً واسعاً من المتابعين، إحداهما حول أزمة الازدحام في الرياض والأخرى حول التكامل بين القطاعين العام والخاص.
-            </div>
-            
-            <div class="insight-item">
-                <strong>🎯 مؤتمر ICAN 2026:</strong> شارك الأستاذ عامر بصفته مستشاراً لرئيس سدايا في مؤتمر ICAN 2026 الذي اختتم أعماله بنتائج بارزة، أبرزها إطلاق 7 مبادرات وطنية وتوقيع 27 اتفاقية استراتيجية لتعزيز القدرات الوطنية في الذكاء الاصطناعي.
-            </div>
-            
-            <div class="insight-item">
-                <strong>💡 اتجاهات المحتوى:</strong> يتسم محتوى الأستاذ عامر بالعمق التحليلي والمزج بين الشأن التقني والمجتمعي، حيث يتناول قضايا التحول الرقمي والبنية التحتية وتحديات المدن الكبرى كالرياض، مما يعكس رؤيته الشاملة كمستشار استراتيجي في مجال الذكاء الاصطناعي.
             </div>
         </div>
         
-        <!-- Footer -->
-        <div class="footer">
-            <div class="footer-grid">
-                <div class="footer-item">
-                    <strong>🤖 آخر تحديث:</strong><br>23 فبراير 2026
-                </div>
-                <div class="footer-item">
-                    <strong>📅 دورية الرصد:</strong><br>كل ثلاثاء وجمعة
-                </div>
-                <div class="footer-item">
-                    <strong>🎯 الحالة:</strong><br>مؤتمت بالكامل
-                </div>
-                <div class="footer-item">
-                    <strong>🔗 المصدر:</strong><br><a href="https://x.com/amer402" target="_blank" style="color: #1DA1F2;">@amer402</a>
-                </div>
+        <div class="section">
+            <h2>🔥 Top Trending Content</h2>
+            <p style="margin-bottom: 25px; color: #666;">The hottest AI content across all platforms, ranked by engagement!</p>
+            <div class="content-grid">
+
+    <div class="content-card">
+        <span class="platform-badge platform-youtube">YOUTUBE</span>
+        <h3>OpenAI is Suddenly in Trouble</h3>
+        <p>Click this link https://boot.dev/?promo=COLDFUSION and use my code COLDFUSION to get 25% off your first payment for ......</p>
+        <div class="engagement-stats">
+            <span>👀 1,584,861 views</span>
+            <span>❤️ 63,945 likes</span>
+        </div>
+        <p><strong>Creator:</strong> ColdFusion</p>
+        <a href="https://www.youtube.com/watch?v=-q2n5DkDoMQ" target="_blank" class="content-link">
+            View Content →
+        </a>
+    </div>
+    
+    <div class="content-card">
+        <span class="platform-badge platform-youtube">YOUTUBE</span>
+        <h3>Doha Debates: Is humanity ready for the intelligence explosion?</h3>
+        <p>Is humanity ready for the intelligence explosion? In this episode of @DohaDebates Town Hall, host Nadir Nahdi explores one of ......</p>
+        <div class="engagement-stats">
+            <span>👀 2,174,788 views</span>
+            <span>❤️ 1,336 likes</span>
+        </div>
+        <p><strong>Creator:</strong> Al Jazeera English</p>
+        <a href="https://www.youtube.com/watch?v=xjuKuIti1Ss" target="_blank" class="content-link">
+            View Content →
+        </a>
+    </div>
+    
+    <div class="content-card">
+        <span class="platform-badge platform-youtube">YOUTUBE</span>
+        <h3>OpenAI Is Bleeding Billions. ChatGPT Is DOOMED</h3>
+        <p>While OpenAI is currently the poster child for the AI revolution, internal spreadsheets suggest a massive financial reckoning is ......</p>
+        <div class="engagement-stats">
+            <span>👀 795,696 views</span>
+            <span>❤️ 18,667 likes</span>
+        </div>
+        <p><strong>Creator:</strong> The Infographics Show</p>
+        <a href="https://www.youtube.com/watch?v=4xiMj8ftOKo" target="_blank" class="content-link">
+            View Content →
+        </a>
+    </div>
+    
+    <div class="content-card">
+        <span class="platform-badge platform-youtube">YOUTUBE</span>
+        <h3>How AI is breaking the SaaS business model...</h3>
+        <p>Run hundreds of coding agents in the cloud - https://oz.dev/fireship. Use code FIRESHIP to get one month of their Build plan for $5 ......</p>
+        <div class="engagement-stats">
+            <span>👀 648,202 views</span>
+            <span>❤️ 24,064 likes</span>
+        </div>
+        <p><strong>Creator:</strong> Fireship</p>
+        <a href="https://www.youtube.com/watch?v=cxcb55zr2Q8" target="_blank" class="content-link">
+            View Content →
+        </a>
+    </div>
+    
+    <div class="content-card">
+        <span class="platform-badge platform-youtube">YOUTUBE</span>
+        <h3>Two AIs break up: ChatGPT breaks up with AI fish</h3>
+        <p>ChatGPT breaks up with my talking Ai-powered fish that I built, Billy. all that lost muscle memory with ChatGPT #ai #robot ......</p>
+        <div class="engagement-stats">
+            <span>👀 563,798 views</span>
+            <span>❤️ 12,743 likes</span>
+        </div>
+        <p><strong>Creator:</strong> gptars</p>
+        <a href="https://www.youtube.com/watch?v=TDJkizs6ndM" target="_blank" class="content-link">
+            View Content →
+        </a>
+    </div>
+    
+    <div class="content-card">
+        <span class="platform-badge platform-youtube">YOUTUBE</span>
+        <h3>Pranking my boyfriend with makeup and getting his reaction #midjourney #youmakeme #feelingme</h3>
+        <p>...</p>
+        <div class="engagement-stats">
+            <span>👀 491,868 views</span>
+            <span>❤️ 8,552 likes</span>
+        </div>
+        <p><strong>Creator:</strong> Thach Bam</p>
+        <a href="https://www.youtube.com/watch?v=EIIR3czLyJM" target="_blank" class="content-link">
+            View Content →
+        </a>
+    </div>
+    
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>🛠️ New AI Tools & Platforms</h2>
+            <div class="content-grid">
+
+    <div class="content-card">
+        <span class="platform-badge platform-youtube">YOUTUBE</span>
+        <h3>If I Had to Start Over in 2026, I&#39;d Learn Only This (5-Level AI Roadmap)</h3>
+        <p>Join our WhatsApp Community Get the latest AI updates, tips, and insights straight to your inbox: https://join.switchit.app/YT ......</p>
+        <div class="engagement-stats">
+            <span>👀 115,915 views</span>
+            <span>❤️ 4,407 likes</span>
+        </div>
+        <p><strong>Creator:</strong> Vaibhav Sisinty</p>
+        <a href="https://www.youtube.com/watch?v=btLZQzynfoA" target="_blank" class="content-link">
+            View Content →
+        </a>
+    </div>
+    
+    <div class="content-card">
+        <span class="platform-badge platform-linkedin">LINKEDIN</span>
+        <h3>How AI increased our team productivity by 300%</h3>
+        <p>After implementing AI tools across our organization, here are the metrics that surprised our executives......</p>
+        <div class="engagement-stats">
+            <span>👀 125,000 views</span>
+            <span>❤️ 3,400 likes</span>
+        </div>
+        <p><strong>Creator:</strong> Sarah Chen, VP Operations</p>
+        <a href="https://linkedin.com/posts/sample1" target="_blank" class="content-link">
+            View Content →
+        </a>
+    </div>
+    
+    <div class="content-card">
+        <span class="platform-badge platform-youtube">YOUTUBE</span>
+        <h3>Viral article warns of looming impacts of artificial intelligence</h3>
+        <p>Matt Shumer joins "CBS Mornings" to discuss his now viral article, "Something Big Is Happening." He writes that AI's "capability for ......</p>
+        <div class="engagement-stats">
+            <span>👀 103,231 views</span>
+            <span>❤️ 1,444 likes</span>
+        </div>
+        <p><strong>Creator:</strong> CBS Mornings</p>
+        <a href="https://www.youtube.com/watch?v=tYecUUyrIo8" target="_blank" class="content-link">
+            View Content →
+        </a>
+    </div>
+    
+    <div class="content-card">
+        <span class="platform-badge platform-youtube">YOUTUBE</span>
+        <h3>We tried to jailbreak ChatGPT. Here&#39;s what we learned.</h3>
+        <p>At its best, an AI chatbot can be a useful tool. At its worst, it can generate inappropriate and potentially dangerous content....</p>
+        <div class="engagement-stats">
+            <span>👀 102,325 views</span>
+            <span>❤️ 1,192 likes</span>
+        </div>
+        <p><strong>Creator:</strong> CNN</p>
+        <a href="https://www.youtube.com/watch?v=DC1uWRqF2Yc" target="_blank" class="content-link">
+            View Content →
+        </a>
+    </div>
+    
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>💡 Creative Use Cases</h2>
+            <div class="content-grid">
+
+    <div class="content-card">
+        <span class="platform-badge platform-youtube">YOUTUBE</span>
+        <h3>OpenAI is Suddenly in Trouble</h3>
+        <p>Click this link https://boot.dev/?promo=COLDFUSION and use my code COLDFUSION to get 25% off your first payment for ......</p>
+        <div class="engagement-stats">
+            <span>👀 1,584,861 views</span>
+            <span>❤️ 63,945 likes</span>
+        </div>
+        <p><strong>Creator:</strong> ColdFusion</p>
+        <a href="https://www.youtube.com/watch?v=-q2n5DkDoMQ" target="_blank" class="content-link">
+            View Content →
+        </a>
+    </div>
+    
+    <div class="content-card">
+        <span class="platform-badge platform-youtube">YOUTUBE</span>
+        <h3>Doha Debates: Is humanity ready for the intelligence explosion?</h3>
+        <p>Is humanity ready for the intelligence explosion? In this episode of @DohaDebates Town Hall, host Nadir Nahdi explores one of ......</p>
+        <div class="engagement-stats">
+            <span>👀 2,174,788 views</span>
+            <span>❤️ 1,336 likes</span>
+        </div>
+        <p><strong>Creator:</strong> Al Jazeera English</p>
+        <a href="https://www.youtube.com/watch?v=xjuKuIti1Ss" target="_blank" class="content-link">
+            View Content →
+        </a>
+    </div>
+    
+    <div class="content-card">
+        <span class="platform-badge platform-youtube">YOUTUBE</span>
+        <h3>OpenAI Is Bleeding Billions. ChatGPT Is DOOMED</h3>
+        <p>While OpenAI is currently the poster child for the AI revolution, internal spreadsheets suggest a massive financial reckoning is ......</p>
+        <div class="engagement-stats">
+            <span>👀 795,696 views</span>
+            <span>❤️ 18,667 likes</span>
+        </div>
+        <p><strong>Creator:</strong> The Infographics Show</p>
+        <a href="https://www.youtube.com/watch?v=4xiMj8ftOKo" target="_blank" class="content-link">
+            View Content →
+        </a>
+    </div>
+    
+    <div class="content-card">
+        <span class="platform-badge platform-youtube">YOUTUBE</span>
+        <h3>How AI is breaking the SaaS business model...</h3>
+        <p>Run hundreds of coding agents in the cloud - https://oz.dev/fireship. Use code FIRESHIP to get one month of their Build plan for $5 ......</p>
+        <div class="engagement-stats">
+            <span>👀 648,202 views</span>
+            <span>❤️ 24,064 likes</span>
+        </div>
+        <p><strong>Creator:</strong> Fireship</p>
+        <a href="https://www.youtube.com/watch?v=cxcb55zr2Q8" target="_blank" class="content-link">
+            View Content →
+        </a>
+    </div>
+    
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>📚 Best Tutorials & Learning</h2>
+            <div class="content-grid">
+
+    <div class="content-card">
+        <span class="platform-badge platform-youtube">YOUTUBE</span>
+        <h3>🎯Learn Artificial Intelligence Full Course From Scratch | AI Course For Beginners | Intellipaat</h3>
+        <p>In this video, Artificial Intelligence Full Course From Scratch is designed to give you a complete roadmap from beginner to ......</p>
+        <div class="engagement-stats">
+            <span>👀 22,135 views</span>
+            <span>❤️ 682 likes</span>
+        </div>
+        <p><strong>Creator:</strong> Intellipaat</p>
+        <a href="https://www.youtube.com/watch?v=EJthq96liCw" target="_blank" class="content-link">
+            View Content →
+        </a>
+    </div>
+    
+    <div class="content-card">
+        <span class="platform-badge platform-youtube">YOUTUBE</span>
+        <h3>AI and Machine Learning Full Course 2026 | AI &amp; Machine Learning Tutorial For Beginners |Simplilearn</h3>
+        <p>This AI and Machine Learning Full Course 2026 by Simplilearn is designed to help beginners learn AI and ML concepts in a clear ......</p>
+        <div class="engagement-stats">
+            <span>👀 12,774 views</span>
+            <span>❤️ 467 likes</span>
+        </div>
+        <p><strong>Creator:</strong> Simplilearn</p>
+        <a href="https://www.youtube.com/watch?v=MsVujBISof8" target="_blank" class="content-link">
+            View Content →
+        </a>
+    </div>
+    
+    <div class="content-card">
+        <span class="platform-badge platform-youtube">YOUTUBE</span>
+        <h3>NEW ChatGPT Update is INSANE! 🤯</h3>
+        <p>Want to make money and save time with AI? Get AI Coaching, Support & Courses ......</p>
+        <div class="engagement-stats">
+            <span>👀 5,403 views</span>
+            <span>❤️ 133 likes</span>
+        </div>
+        <p><strong>Creator:</strong> Julian Goldie SEO</p>
+        <a href="https://www.youtube.com/watch?v=znIj4XPsHak" target="_blank" class="content-link">
+            View Content →
+        </a>
+    </div>
+    
+            </div>
+        </div>
+        
+        <div class="insights-section">
+            <h2 style="color: white; border-bottom: 3px solid rgba(255,255,255,0.3);">🤖 AI Agent's Hot Takes</h2>
+            
+            <div class="insight-item">
+                <strong>🔥 This Week's Fire:</strong> AI tool adoption is absolutely EXPLODING! 
+                The YouTube content quality has reached another level - creators are sharing 
+                production-ready workflows that are genuinely game-changing.
             </div>
             
-            <p style="font-size: 1em; margin-top: 20px; color: #888;">
-                نظام رصد آلي لمتابعة أنشطة عامر القحطاني عبر المنصات الرقمية 🌟
+            <div class="insight-item">
+                <strong>📈 Trending Alert:</strong> Business use cases are getting incredibly sophisticated. 
+                We're seeing real companies share actual ROI numbers from AI implementations, 
+                not just demos and promises!
+            </div>
+            
+            <div class="insight-item">
+                <strong>🎯 Agent's Pick:</strong> The tutorial content this week is INSANE! 
+                People are teaching advanced prompt engineering techniques that would have 
+                been trade secrets 6 months ago. The community is leveling up fast! 🚀
+            </div>
+        </div>
+        
+        <div class="footer">
+            <div style="display: flex; justify-content: center; gap: 40px; margin-bottom: 20px;">
+                <div><strong>🤖 Auto-Generated:</strong> {datetime.now().strftime('%I:%M %p UTC')}</div>
+                <div><strong>📅 Next Hunt:</strong> Every Tuesday & Friday</div>
+                <div><strong>🎯 Status:</strong> Fully Automated</div>
+            </div>
+            
+            <p style="font-size: 1.1em; margin-top: 20px;">
+                <strong>Your personal AI trend scout, always watching! 🌟</strong>
             </p>
         </div>
     </div>
